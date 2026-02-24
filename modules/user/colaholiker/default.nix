@@ -16,8 +16,7 @@ in
     extraGroups = lib.unique (baseGroups ++ config.local.userExtraGroups);
     shell = pkgs.bash;
     linger = false;
-    initialPassword = "Menu0815";
-    hashedPassword = "$6$uKKJkOFnj1mJQYZA$SdNNtYLjMYVmkGGjlMScNSAd8F88bIfdo3vw/iGLlUMtSvC8DcE.fGXyT3500wK7Oen32YDV1zRkVKqG1n5XY1";
+    initialHashedPassword = "$6$uKKJkOFnj1mJQYZA$SdNNtYLjMYVmkGGjlMScNSAd8F88bIfdo3vw/iGLlUMtSvC8DcE.fGXyT3500wK7Oen32YDV1zRkVKqG1n5XY1";
     packages = with pkgs; [
     ];
     openssh.authorizedKeys.keys = [
