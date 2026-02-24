@@ -83,7 +83,6 @@ let
     texliveFull
     yt-dlp
     yewtube
-    ventoy-full
     testdisk
     exfat
     exfatprogs
