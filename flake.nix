@@ -40,7 +40,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.muhackel = import ./modules/user/colaholiker/home.nix;
+          home-manager.users.colaholiker = import ./modules/user/colaholiker/home.nix;
         }
       ];
 

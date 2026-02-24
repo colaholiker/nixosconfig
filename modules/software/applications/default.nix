@@ -138,16 +138,6 @@ in
     enable = true;
     package = pkgs.emacs-gtk;
   };
-  # disable syncthing ... switch to homemanager config
-  #services.syncthing = {
-  #    enable = true;
-  #    user = "muhackel";
-  #    group = "users";
-  #    #systemService = false;
-  #    openDefaultPorts = true;
-  #    configDir = "/home/muhackel/.config/syncthing";
-  #    dataDir = "/home/muhackel";
-  #};
   services.flatpak.enable = true;
   systemd.services.flatpak-repo = {
     wantedBy = [ "multi-user.target" ];
