@@ -46,9 +46,4 @@ in
       LC_TIME = "de_DE.UTF-8";        # Datum (TT.MM.JJJJ) und 24h-Zeit
     };
   };
-
-  console = {
-    font = "Lat2-Terminus16";
-    useXkbConfig = true;
-  };
 }
