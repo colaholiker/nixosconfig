@@ -100,7 +100,6 @@ let
 in
 {
   imports = [
-    ./hamradio.nix
     ./networking.nix
     ./nfc.nix
     ./ptls.nix
