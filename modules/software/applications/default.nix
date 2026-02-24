@@ -31,7 +31,6 @@ let
     kicad
     mpv
     meld
-    freecad
     gpu-viewer
     gparted
     vscode
