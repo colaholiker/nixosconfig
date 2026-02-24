@@ -7,7 +7,6 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./modules/hardware/asuspro_d520mt/hardware-configuration.nix
     ];
 
   # Bootloader.
