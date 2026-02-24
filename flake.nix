@@ -23,7 +23,7 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, lanzaboote, ... }:
+  outputs = { self, nixpkgs, home-manager, flake-utils, ... }:
     let
       lib = nixpkgs.lib;
 
