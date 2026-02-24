@@ -22,7 +22,6 @@ in
     allowBroken = true;
     permittedInsecurePackages = usedPermittedInsecurePackages;
   };
-  nixpkgs.overlays = usedOverlays;
   nix.settings = {
     auto-optimise-store = true;
     experimental-features = [ "nix-command" "flakes" ];
