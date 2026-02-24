@@ -13,4 +13,11 @@
     virtualbox = lib.mkEnableOption "VirtualBox virtualisation";
     libvirt = lib.mkEnableOption "libvirt virtualisation";
   };
+
+    options.local.userExtraGroups = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [];
+      description = "Additional groups for user muhackel contributed by feature modules.";
+    };
+
 }
