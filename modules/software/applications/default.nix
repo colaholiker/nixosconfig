@@ -101,8 +101,6 @@ in
 {
   imports = [
     ./networking.nix
-    ./nfc.nix
-    ./ptls.nix
     ./games.nix
   ];
   environment.systemPackages = apppkgs ++ clipkgs ++ communicationpkgs ++ devpackages ++ [ javawsWrapper ];
