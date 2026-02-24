@@ -30,6 +30,7 @@
       # ── Gemeinsame Module für alle Desktop-Hosts ──
       commonModules = [
         ./modules/options.nix
+        ./configuration.nix
         ./modules/user/colaholiker
         ./modules/software/fonts
         ./modules/software/localisation
