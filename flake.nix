@@ -15,9 +15,9 @@
     trusted-users = [ "root" "colaholiker" ];
   };
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-utils.url = "github:numtide/flake-utils";
@@ -53,7 +53,7 @@
       # ── Helper: Desktop-Host erzeugen ──
       mkHost = {
         hostModule,
-        stateVersion ? "26.05",
+        stateVersion ? "25.11",
         features,
         extraModules ? [],
       }:
