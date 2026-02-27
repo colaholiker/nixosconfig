@@ -11,14 +11,10 @@ in
       hwdec = "vaapi"; # maybe vulkan in the future
     };
   };
-  services.syncthing = {
-    enable = true;
-    tray.enable = true;
-  };
   xdg.configFile."plasma-localerc" = {
     text = ''
       [Formats]
-      LANG=en_US.UTF-8
+      LANG=de_DE.UTF-8
       LC_ADDRESS=de_DE.UTF-8
       LC_MEASUREMENT=de_DE.UTF-8
       LC_MONETARY=de_DE.UTF-8

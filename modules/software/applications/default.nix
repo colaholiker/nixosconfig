@@ -85,6 +85,7 @@ let
     testdisk
     exfat
     exfatprogs
+    deskflow
   ];
   communicationpkgs = with pkgs; [
     signal-desktop
