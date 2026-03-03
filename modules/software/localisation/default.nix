@@ -45,8 +45,8 @@ in
       LC_TELEPHONE = "de_DE.UTF-8";
       LC_TIME = "de_DE.UTF-8";        # Datum (TT.MM.JJJJ) und 24h-Zeit
     };
-
-    console.keyMap = "de";
-    services.xserver.xkb.layout = "de";
   };
+      console.keyMap = "de";
+      services.xserver.xkb.layout = "de";
+
 }
