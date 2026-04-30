@@ -21,5 +21,10 @@ in
   virtualisation.libvirtd.enable = cfg.libvirt;
 
   virtualisation.docker.enable = cfg.docker;
-  environment.systemPackages = lib.mkIf cfg.winboat winboatpkgs;
+  environment.systemPackages =
+    lib.optional cfg.winboat pkgs.winboat
+    ++ lib.optionals cfg.ddev [
+      pkgs.ddev
+      pkgs.mkcert
+    ];
 }
