@@ -27,4 +27,11 @@ in
       pkgs.ddev
       pkgs.mkcert
     ];
+
+# 3. Allow Xdebug traffic (optional, for debugging)
+  networking.firewall.allowedTCPPorts = [ 9003 ];
+
+  # 4. Allow DDEV to modify the hosts file
+  environment.etc.hosts.mode = "0644";
+
 }
