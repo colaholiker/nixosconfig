@@ -37,6 +37,7 @@ let
     obsidian
     veracrypt
     vlc
+    jetbrains.phpstorm
   ];
   clipkgs = with pkgs; [
     alsa-utils
