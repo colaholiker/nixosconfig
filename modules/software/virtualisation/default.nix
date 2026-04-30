@@ -23,7 +23,7 @@ in
   virtualisation.docker.enable = cfg.docker;
   environment.systemPackages =
     lib.optional cfg.winboat pkgs.winboat
-    ++ lib.optionals cfg.ddev [
+    ++ lib.optionals cfg.docker [
       pkgs.ddev
       pkgs.mkcert
     ];
