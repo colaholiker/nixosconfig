@@ -77,6 +77,7 @@ let
     exfat
     exfatprogs
     deskflow
+	vim
   ];
   communicationpkgs = with pkgs; [
     signal-desktop
