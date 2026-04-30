@@ -10,42 +10,33 @@ let
     exec "$JAVAWS_BIN" "$@"
   '';
   apppkgs = with pkgs; [
-    # BROKEN CMAKE bambu-studio
-    # BROKEN cura
     audacity
     alacritty
     camunda-modeler
-    # darktable
-    #eagle
     freefilesync
     inkscape
-    # BROKEN CMAKE rclone-browser
     libreoffice-fresh
-    librecad
-    qcad
+    #librecad
+    #qcad
     qdirstat
     drawio
     github-desktop
     google-chrome
     kitty
-    kicad
+    #kicad
     mpv
     meld
     gpu-viewer
     gparted
     vscode
-    #mcp-nixos BROKEN
     gimp3
     yed
     virt-manager
     virt-viewer
     remmina
-    #rpi-imager
-    transmission_4-qt6
     obsidian
     veracrypt
     vlc
-    # qutebrowser
   ];
   clipkgs = with pkgs; [
     alsa-utils
