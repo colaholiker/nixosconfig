@@ -22,6 +22,7 @@ let
     drawio
     github-desktop
     google-chrome
+    firefox
     kitty
     #kicad
     mpv
