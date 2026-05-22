@@ -26,11 +26,10 @@ in
   };
 
  xdg.portal = {
-     enable = true;
-     extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
-     # Optionale Angabe für Plasma 6 Priorität
-     config.common.default = "kde";
-   };
+   enable = true;
+   extraPortals = [ pkgs.xdg-desktop-portal-wlr ]; # Falls du Sway/Hyprland nutzt
+   # extraPortals = [ pkgs.xdg-desktop-portal-gnome ]; # Falls du GNOME nutzt
+ };
 
   environment.systemPackages = lib.optionals cfg.plasma6 plasmapkgs;
 }

@@ -80,6 +80,7 @@ let
     exfatprogs
     deskflow
     wl-clipboard
+    wl-clipboard
 	vim
   ];
   communicationpkgs = with pkgs; [
@@ -97,6 +98,11 @@ in
     ./networking.nix
     ./games.nix
   ];
+
+  environment.sessionVariables = {
+    XDG_SESSION_TYPE = "wayland"; # Teilt Deskflow mit, dass es auf Wayland läuft
+  };
+
   environment.systemPackages = apppkgs ++ clipkgs ++ communicationpkgs ++ devpackages ++ [ javawsWrapper ];
   programs.vscode = {
     enable = true;
