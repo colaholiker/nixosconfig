@@ -29,7 +29,7 @@ in
     ];
 
 # 3. Allow Xdebug traffic (optional, for debugging)
-  networking.firewall.allowedTCPPorts = [ 9003 ];
+  networking.firewall.allowedTCPPorts = [ 9003 24800 24801];
 
   # 4. Allow DDEV to modify the hosts file
   environment.etc.hosts.mode = "0644";
