@@ -24,5 +24,13 @@ in
   services.desktopManager.plasma6 = {
     enable = cfg.plasma6;
   };
+
+ xdg.portal = {
+     enable = true;
+     extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
+     # Optionale Angabe für Plasma 6 Priorität
+     config.common.default = "kde";
+   };
+
   environment.systemPackages = lib.optionals cfg.plasma6 plasmapkgs;
 }

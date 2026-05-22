@@ -12,10 +12,6 @@ in
     };
   };
 
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true; # Oder das entsprechende Portal für GNOME/KDE (z.B. xdg-desktop-portal-gnome)
-  };
 
   xdg.configFile."plasma-localerc" = {
     text = ''
