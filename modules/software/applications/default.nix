@@ -79,6 +79,7 @@ let
     exfat
     exfatprogs
     deskflow
+    wl-clipboard
 	vim
   ];
   communicationpkgs = with pkgs; [
