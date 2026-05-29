@@ -29,7 +29,7 @@ in
     ];
 
 # 3. Allow Xdebug traffic (optional, for debugging)
-  networking.firewall.allowedTCPPorts = [ 80 9003 24800 24801];
+  networking.firewall.allowedTCPPorts = [ 80 9003 24800 24801 24802 24804];
   networking.firewall.allowedUDPPorts = [ 24800 24801 ];
 
   # 4. Allow DDEV to modify the hosts file
