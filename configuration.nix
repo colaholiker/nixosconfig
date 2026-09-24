@@ -8,10 +8,7 @@ let
   usedPermittedInsecurePackages = [
       "libxml2-2.13.8"
       "libsoup-2.74.3"
-      "qtwebengine-5.15.19"
-      "ventoy-1.1.10"
-      "dotnet-sdk-6.0.428"
-      "dotnet-runtime-6.0.36"
+      "qtwebengine-5.15.19" # teamspeak3
     ];
 
 in
@@ -19,7 +16,6 @@ in
   hardware.enableAllFirmware = true;
   nixpkgs.config = {
     allowUnfree = true;
-    allowBroken = true;
     permittedInsecurePackages = usedPermittedInsecurePackages;
   };
   nix.settings = {

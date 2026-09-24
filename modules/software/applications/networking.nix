@@ -34,15 +34,6 @@ lib.mkIf config.local.features.networking
   #];
   environment.systemPackages = gnspkgs ++ networkingpkgs;
 
-
-  services.atftpd.enable = true;
-
-  services.iperf3 = {
-    enable = true;
-    openFirewall = true;
-    #port = 5201;
-  };
-
   programs.wireshark = {
     enable = true;
     dumpcap.enable = true;
@@ -54,10 +45,4 @@ lib.mkIf config.local.features.networking
   programs.iftop.enable = true;
 
   programs.mtr.enable = true;
-
-  programs.winbox = {
-    enable = true;
-    openFirewall = true;
-    package = pkgs.winbox4;
-  };
 }
