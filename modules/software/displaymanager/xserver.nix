@@ -29,13 +29,13 @@ let
     xss-lock
   ];
 in
-{
+lib.mkIf cfg.xserver {
   services.xserver = {
-    enable = cfg.xserver;
+    enable = true;
     enableCtrlAltBackspace = true;
 
     windowManager.xmonad = {
-      enable = config.services.xserver.enable;  # Abhängig von enable machen
+      enable = true;
       enableContribAndExtras = true;
       enableConfiguredRecompile = xmonadConfig != null;
       config = xmonadConfig;
@@ -43,13 +43,12 @@ in
   };
 
   services.picom = {
-    enable = config.services.xserver.enable;  # Abhängig von enable machen
+    enable = true;
     opacityRules = [
       "80:class_g = 'Alacritty' && focused"
       "80:class_g = 'Alacritty' && !focused"
     ];
   };
 
-  # only add these packages when the X server is enabled
-  environment.systemPackages = lib.optionals config.services.xserver.enable (xsupportpkgs ++ xmonadpkgs);
+  environment.systemPackages = xsupportpkgs ++ xmonadpkgs;
 }

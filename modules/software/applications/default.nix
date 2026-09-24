@@ -1,5 +1,6 @@
 { config, lib, pkgs, ... }:
 let
+  cfg = config.local.features;
   jnlpApp = pkgs.adoptopenjdk-icedtea-web;
   javawsWrapper = pkgs.writeScriptBin "javaws" ''
     #!${pkgs.bash}/bin/bash
@@ -11,15 +12,11 @@ let
   apppkgs = with pkgs; [
     audacity
     alacritty
-    camunda-modeler
     freefilesync
     inkscape
-    libreoffice-fresh
     #librecad
     #qcad
     qdirstat
-    drawio
-    github-desktop
     google-chrome
     firefox
     kitty
@@ -28,12 +25,18 @@ let
     gpu-viewer
     gparted
     gimp3
-    yed
     remmina
-    obsidian
     veracrypt
     vlc
-    jetbrains.phpstorm
+  ];
+  officepkgs = with pkgs; [
+    libreoffice-fresh
+    camunda-modeler
+    drawio
+    yed
+    obsidian
+    plantuml
+    texliveFull
   ];
   clipkgs = with pkgs; [
     alsa-utils
@@ -44,10 +47,8 @@ let
     hunspellDicts.de_DE
     hunspellDicts.en_US
     broot
-    plantuml
     dysk
     #minicom depency lrzsz is broken
-    git-lfs
     mesa-demos
     nvd
     htop
@@ -65,13 +66,11 @@ let
     unzip
     usbutils
     wget
-    texliveFull
     yt-dlp
     yewtube
     testdisk
     exfat
     exfatprogs
-    deskflow
     wl-clipboard
     vim
   ];
@@ -82,7 +81,16 @@ let
     hexchat
     teamspeak3
   ];
-  devpackages = with pkgs; [ cmake automake python3 ghc nodePackages.nodejs ];
+  devpkgs = with pkgs; [
+    cmake
+    automake
+    python3
+    ghc
+    nodePackages.nodejs
+    git-lfs
+    github-desktop
+    jetbrains.phpstorm
+  ];
 in
 {
   imports = [
@@ -90,53 +98,58 @@ in
     ./games.nix
   ];
 
-  environment.systemPackages = apppkgs ++ clipkgs ++ communicationpkgs ++ devpackages ++ [ javawsWrapper ];
+  config = lib.mkMerge [
+    {
+      environment.systemPackages = apppkgs ++ clipkgs ++ [ javawsWrapper ];
 
-  # Deskflow
-  networking.firewall.allowedTCPPorts = [ 24800 ];
-  programs.vscode = {
-    enable = true;
-  };
-  programs.java = {
-    enable = true;
-  };
-  programs.ausweisapp = {
-    enable = true;
-    openFirewall = true;
-  };
-  programs.git = {
-    enable = true;
-  };
-  programs.evolution = {
-    enable = true;
-  };
-  programs.direnv = {
-    enable = true;
-  };
-  programs.obs-studio = {
-    enable = true;
-    enableVirtualCamera = true;
-    plugins = with pkgs.obs-studio-plugins; [
-      obs-backgroundremoval
-    ];
-  };
-  programs.noisetorch = {
-    enable = true;
-  };
+      programs.java.enable = true;
+      programs.ausweisapp = {
+        enable = true;
+        openFirewall = true;
+      };
+      programs.git.enable = true;
+      programs.direnv.enable = true;
+      programs.obs-studio = {
+        enable = true;
+        enableVirtualCamera = true;
+        plugins = with pkgs.obs-studio-plugins; [
+          obs-backgroundremoval
+        ];
+      };
+      programs.noisetorch.enable = true;
 
-  services.emacs = {
-    enable = true;
-    package = pkgs.emacs-gtk;
-  };
-  services.flatpak.enable = true;
-  systemd.services.flatpak-repo = {
-    wantedBy = [ "multi-user.target" ];
-    wants = [ "network-online.target" ];
-    after = [ "network-online.target" ];
-    serviceConfig.Type = "oneshot";
-    path = [ pkgs.flatpak ];
-    script = ''
-      flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    '';
-  };
+      services.flatpak.enable = true;
+      systemd.services.flatpak-repo = {
+        wantedBy = [ "multi-user.target" ];
+        wants = [ "network-online.target" ];
+        after = [ "network-online.target" ];
+        serviceConfig.Type = "oneshot";
+        path = [ pkgs.flatpak ];
+        script = ''
+          flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+        '';
+      };
+    }
+
+    (lib.mkIf cfg.office {
+      environment.systemPackages = officepkgs;
+    })
+
+    (lib.mkIf cfg.dev {
+      environment.systemPackages = devpkgs;
+      programs.vscode.enable = true;
+    })
+
+    (lib.mkIf cfg.communication {
+      environment.systemPackages = communicationpkgs;
+      programs.evolution.enable = true;
+    })
+
+    (lib.mkIf cfg.emacs {
+      services.emacs = {
+        enable = true;
+        package = pkgs.emacs-gtk;
+      };
+    })
+  ];
 }

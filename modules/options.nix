@@ -7,6 +7,11 @@
     plasma6 = lib.mkEnableOption "KDE Plasma 6 desktop environment";
     networking = lib.mkEnableOption "networking tools";
     games = lib.mkEnableOption "gaming software";
+    office = lib.mkEnableOption "office, documentation and diagram tools";
+    dev = lib.mkEnableOption "development tools and IDEs";
+    communication = lib.mkEnableOption "messenger and mail clients";
+    emacs = lib.mkEnableOption "Emacs daemon";
+    deskflow = lib.mkEnableOption "Deskflow keyboard/mouse sharing";
     vmwareHost = lib.mkEnableOption "VMware host virtualisation";
     docker = lib.mkEnableOption "Docker container runtime";
     winboat = lib.mkEnableOption "Winboat tools";

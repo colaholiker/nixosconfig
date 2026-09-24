@@ -23,18 +23,21 @@
         ./modules/software/applications
         ./modules/software/virtualisation
         ./modules/software/displaymanager
+        ./modules/software/deskflow
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "hm-backup";
           home-manager.users.colaholiker = import ./modules/user/colaholiker/home.nix;
         }
       ];
 
       # ── Helper: Desktop-Host erzeugen ──
+      # stateVersion = NixOS-Version bei der Installation des Hosts, niemals nachträglich ändern
       mkHost = {
         hostModule,
-        stateVersion ? "25.11",
+        stateVersion,
         features,
         extraModules ? [],
       }:
@@ -49,15 +52,23 @@
       };
 
     in {
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
+
       nixosConfigurations = {
 
         heindl-pollux = mkHost {
           hostModule = ./modules/host/heindl-pollux;
+          stateVersion = "25.11";
           features = {
             wayland = true;
             plasma6 = true;
             networking = true;
             games = false;
+            office = true;
+            dev = true;
+            communication = true;
+            emacs = true;
+            deskflow = true;
             docker = true;
             winboat = false;
             virtualbox = false;

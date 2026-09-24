@@ -16,14 +16,17 @@ let
   ];
 in
 {
-  services.displayManager.sddm = {
-    enable = cfg.wayland;
-    wayland.enable = true;
-  };
+  config = lib.mkMerge [
+    (lib.mkIf cfg.wayland {
+      services.displayManager.sddm = {
+        enable = true;
+        wayland.enable = true;
+      };
+    })
 
-  services.desktopManager.plasma6 = {
-    enable = cfg.plasma6;
-  };
-
-  environment.systemPackages = lib.optionals cfg.plasma6 plasmapkgs;
+    (lib.mkIf cfg.plasma6 {
+      services.desktopManager.plasma6.enable = true;
+      environment.systemPackages = plasmapkgs;
+    })
+  ];
 }
