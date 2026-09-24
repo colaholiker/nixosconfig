@@ -5,7 +5,6 @@ let
     "wheel"
     "networkmanager"
     "dialout"
-    "docker"
     "uucp" # legacy group for serial devices
   ];
 in

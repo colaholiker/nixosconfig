@@ -1,6 +1,9 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.local.features;
+  # Nur verwenden, wenn die Datei im Repo (git) liegt, sonst eigene ~/.xmonad/xmonad.hs
+  xmonadConfigFile = ../../../sources/xmonad/xmonad.hs;
+  xmonadConfig = if builtins.pathExists xmonadConfigFile then xmonadConfigFile else null;
   xsupportpkgs = with pkgs; [
     xorg.xinput
     xorg.xmodmap
@@ -35,8 +38,8 @@ in
     windowManager.xmonad = {
       enable = config.services.xserver.enable;  # Abhängig von enable machen
       enableContribAndExtras = true;
-      enableConfiguredRecompile = true;
-      config = ../../../sources/xmonad/xmonad.hs;
+      enableConfiguredRecompile = xmonadConfig != null;
+      config = xmonadConfig;
     };
   };
 

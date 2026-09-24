@@ -1,7 +1,5 @@
 { config, lib, pkgs, ... }:
 
-let crossover = pkgs.callPackage ../../../packages/crossover { };
-in
 lib.mkIf config.local.features.games {
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;

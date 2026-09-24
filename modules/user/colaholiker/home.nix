@@ -35,7 +35,7 @@ in
   };
   home.sessionVariables = {
     # DICPATH sagt Hunspell, wo die Wörterbücher liegen
-    DICPATH = "${config.home.homeDirectory}/.nix-profile/share/hunspell:/run/current-system/sw/share/hunspell";
+    DICPATH = "/etc/profiles/per-user/${config.home.username}/share/hunspell:/run/current-system/sw/share/hunspell";
 
     # ASPELL_CONF setzt die Standard-Sprache für Aspell
     ASPELL_CONF = "lang de_DE";

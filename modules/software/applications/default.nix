@@ -99,10 +99,6 @@ in
     ./games.nix
   ];
 
-  environment.sessionVariables = {
-    XDG_SESSION_TYPE = "wayland"; # Teilt Deskflow mit, dass es auf Wayland läuft
-  };
-
   environment.systemPackages = apppkgs ++ clipkgs ++ communicationpkgs ++ devpackages ++ [ javawsWrapper ];
   programs.vscode = {
     enable = true;
@@ -141,6 +137,9 @@ in
   services.flatpak.enable = true;
   systemd.services.flatpak-repo = {
     wantedBy = [ "multi-user.target" ];
+    wants = [ "network-online.target" ];
+    after = [ "network-online.target" ];
+    serviceConfig.Type = "oneshot";
     path = [ pkgs.flatpak ];
     script = ''
       flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo

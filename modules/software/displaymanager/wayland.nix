@@ -25,11 +25,5 @@ in
     enable = cfg.plasma6;
   };
 
- xdg.portal = {
-   enable = true;
-   extraPortals = [ pkgs.xdg-desktop-portal-wlr ]; # Falls du Sway/Hyprland nutzt
-   # extraPortals = [ pkgs.xdg-desktop-portal-gnome ]; # Falls du GNOME nutzt
- };
-
   environment.systemPackages = lib.optionals cfg.plasma6 plasmapkgs;
 }
