@@ -7,15 +7,9 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    flake-utils.url = "github:numtide/flake-utils";
-        lanzaboote = {
-          url = "github:nix-community/lanzaboote/v1.0.0";
-          inputs.nixpkgs.follows = "nixpkgs";
-        };
-
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, ... }:
+  outputs = { self, nixpkgs, home-manager, ... }:
     let
       lib = nixpkgs.lib;
 

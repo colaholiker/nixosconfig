@@ -7,7 +7,6 @@
 let
   gnspkgs = with pkgs; [
     gns3-gui
-    inetutils
     #ciscoPacketTracer8
   ];
   networkingpkgs = with pkgs; [
@@ -23,6 +22,7 @@ let
     netdiscover
     #netsniff-ng BROKEN
     nmap
+    whois
     #nomachine-client
     zenmap
   ];

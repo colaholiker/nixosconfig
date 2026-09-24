@@ -12,7 +12,6 @@ let
   ];
   xmonadpkgs = with pkgs; [
     feh
-    alacritty
     conky
     dzen2
     dmenu

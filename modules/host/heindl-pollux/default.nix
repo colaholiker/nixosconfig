@@ -3,7 +3,6 @@
 {
   imports = [
     ../../hardware/asuspro_d520mt
-    ../../hardware/keyboard
   ];
   #boot.kernelPackages = pkgs.linuxPackages_6_18;
 

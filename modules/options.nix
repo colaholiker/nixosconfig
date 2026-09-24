@@ -14,10 +14,10 @@
     libvirt = lib.mkEnableOption "libvirt virtualisation";
   };
 
-    options.local.userExtraGroups = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
-      default = [];
-      description = "Additional groups for user muhackel contributed by feature modules.";
-    };
+  options.local.userExtraGroups = lib.mkOption {
+    type = lib.types.listOf lib.types.str;
+    default = [];
+    description = "Additional groups for user colaholiker contributed by feature modules.";
+  };
 
 }

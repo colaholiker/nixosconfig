@@ -6,7 +6,6 @@ let
     export JAVAWS_BIN="${jnlpApp}/bin/javaws"
     export PATH="${pkgs.jdk8}/bin:$PATH"
     export JAVA_HOME="${pkgs.jdk8}"
-    echo "DEBUG: Verwende Java: $(${pkgs.jdk8}/bin/java -version 2>&1 | head -n 1)"
     exec "$JAVAWS_BIN" "$@"
   '';
   apppkgs = with pkgs; [
@@ -25,15 +24,11 @@ let
     firefox
     kitty
     #kicad
-    mpv
     meld
     gpu-viewer
     gparted
-    vscode
     gimp3
     yed
-    virt-manager
-    virt-viewer
     remmina
     obsidian
     veracrypt
@@ -52,8 +47,6 @@ let
     plantuml
     dysk
     #minicom depency lrzsz is broken
-    fwupd
-    git
     git-lfs
     mesa-demos
     nvd
@@ -80,15 +73,13 @@ let
     exfatprogs
     deskflow
     wl-clipboard
-    wl-clipboard
-	vim
+    vim
   ];
   communicationpkgs = with pkgs; [
     signal-desktop
     ferdium
     discord
     hexchat
-    libsForQt5.qt5.qtwebengine # aus kompatibilitätsgründen mit collect-garbage? need to watch ... dependency von teamspeak3
     teamspeak3
   ];
   devpackages = with pkgs; [ cmake automake python3 ghc nodePackages.nodejs ];
@@ -100,6 +91,9 @@ in
   ];
 
   environment.systemPackages = apppkgs ++ clipkgs ++ communicationpkgs ++ devpackages ++ [ javawsWrapper ];
+
+  # Deskflow
+  networking.firewall.allowedTCPPorts = [ 24800 ];
   programs.vscode = {
     enable = true;
   };
