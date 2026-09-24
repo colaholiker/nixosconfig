@@ -72,7 +72,6 @@ let
     exfat
     exfatprogs
     wl-clipboard
-    vim
   ];
   communicationpkgs = with pkgs; [
     signal-desktop
@@ -103,11 +102,10 @@ in
       environment.systemPackages = apppkgs ++ clipkgs ++ [ javawsWrapper ];
 
       programs.java.enable = true;
-      programs.ausweisapp = {
+      programs.git = {
         enable = true;
-        openFirewall = true;
+        config.core.editor = "vim";
       };
-      programs.git.enable = true;
       programs.direnv.enable = true;
       programs.obs-studio = {
         enable = true;

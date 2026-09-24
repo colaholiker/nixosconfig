@@ -35,7 +35,7 @@ nix fmt
 
 ## Feature-Flags
 
-`xserver`, `wayland`, `plasma6`, `networking`, `games`, `office`, `dev`,
+`wayland`, `plasma6`, `networking`, `games`, `office`, `dev`,
 `communication`, `emacs`, `deskflow`, `docker`, `winboat`, `virtualbox`,
 `libvirt`, `vmwareHost`
 

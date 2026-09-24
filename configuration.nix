@@ -33,6 +33,17 @@ in
     ];
     trusted-users = [ "root" ];
   };
+  # Baut täglich den Stand von GitHub (main) für den eigenen Hostnamen, ohne Neustart.
+  # Neue nixpkgs-Versionen kommen über ein committetes flake.lock (nix flake update).
+  system.autoUpgrade = {
+    enable = true;
+    flake = "github:colaholiker/nixosconfig";
+    flags = [ "--refresh" "-L" ];
+    dates = "12:30";
+    randomizedDelaySec = "30min";
+    persistent = true;
+    allowReboot = false;
+  };
   nix.gc = {
     automatic = true;
     dates = "daily";
@@ -47,12 +58,11 @@ in
     };
   };
   security.sudo.wheelNeedsPassword = true;
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
   users.defaultUserShell = pkgs.bash;
+  programs.vim = {
+    enable = true;
+    defaultEditor = true;
+  };
   services.fstrim.enable = true;
   services.fwupd.enable = true;
   services.udisks2 = {

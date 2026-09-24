@@ -67,7 +67,7 @@
             office = true;
             dev = true;
             communication = true;
-            emacs = true;
+            emacs = false;
             deskflow = true;
             docker = true;
             winboat = false;

@@ -1,0 +1,35 @@
+name: update-flake-lock
+
+# Wöchentlich flake.lock aktualisieren; system.autoUpgrade baut danach den neuen Stand.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 3 * * 0" # Sonntag 03:17 UTC
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: cachix/install-nix-action@v31
+
+      - name: flake.lock aktualisieren
+        run: nix flake update
+
+      - name: Konfiguration auswerten (fängt fehlende/kaputte/insecure Pakete ab)
+        run: nix eval --raw .#nixosConfigurations.heindl-pollux.config.system.build.toplevel.drvPath
+
+      - name: Committen und pushen
+        run: |
+          if git diff --quiet flake.lock; then
+            echo "flake.lock unverändert"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "flake.lock: update" flake.lock
+          git push

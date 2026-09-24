@@ -2,7 +2,6 @@
 
 {
   options.local.features = {
-    xserver = lib.mkEnableOption "X11/Xserver desktop environment";
     wayland = lib.mkEnableOption "Wayland display server";
     plasma6 = lib.mkEnableOption "KDE Plasma 6 desktop environment";
     networking = lib.mkEnableOption "networking tools";

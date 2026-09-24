@@ -15,13 +15,29 @@ in
   
   # Additional filesystems supported by the system
   #boot.supportedFilesystems = [ "zfs" ];
-  # Additional Kernel Modules for the initrd (available during boot)
-  boot.initrd.availableKernelModules = [ "nvme" ];
   #boot.zfs.allowHibernation = true;
+  boot.tmp.cleanOnBoot = true;
 
-  hardware.graphics.enable = true;  # Before 24.11: hardware.opengl.driSupport
-  hardware.graphics.enable32Bit = true;  # Before 24.11: hardware.opengl.driSupport32Bit
+  # i5-6400 (Skylake), HD Graphics 530 (i915), 4 GB RAM, SATA-SSD
+  hardware.graphics.enable = true;
+  hardware.graphics.enable32Bit = true;
   hardware.graphics.extraPackages = extragfxpkgs;
 
+  # Nur 4 GB RAM: komprimierter Swap im RAM vor dem Swap auf der SSD
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 50;
+  };
+  # Beendet bei Speichermangel den größten Prozess, bevor das System einfriert
+  services.earlyoom = {
+    enable = true;
+    enableNotifications = true;
+  };
+
+  # Rebuilds nicht parallel und mit niedriger Priorität, damit der Desktop bedienbar bleibt
+  nix.settings.max-jobs = 1;
+  nix.daemonCPUSchedPolicy = "idle";
+  nix.daemonIOSchedClass = "idle";
 
 }
