@@ -1,0 +1,9 @@
+# JetBrains IDE
+.idea/
+
+# nix build output
+result
+result-*
+
+# direnv
+.direnv/
