@@ -10,6 +10,7 @@ in
   imports = [
     ./boot.nix
     ./hardware-configuration.nix
+    ./monitors.nix
     ./powermgmt.nix
   ];
   
