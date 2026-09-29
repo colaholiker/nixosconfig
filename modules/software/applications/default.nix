@@ -24,13 +24,13 @@ let
     meld
     gpu-viewer
     gparted
-    gimp3
+    gimp
     remmina
     veracrypt
     vlc
   ];
   officepkgs = with pkgs; [
-    libreoffice-fresh
+    libreoffice
     camunda-modeler
     drawio
     yed
