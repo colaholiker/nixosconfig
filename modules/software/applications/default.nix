@@ -77,7 +77,7 @@ let
     signal-desktop
     ferdium
     discord
-    hexchat
+    #hexchat removed from nixpkgs (archived upstream, gtk2)
     teamspeak3
   ];
   devpkgs = with pkgs; [
