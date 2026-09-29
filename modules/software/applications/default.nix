@@ -78,7 +78,7 @@ let
     ferdium
     discord
     #hexchat removed from nixpkgs (archived upstream, gtk2)
-    teamspeak3
+    teamspeak6-client
   ];
   devpkgs = with pkgs; [
     cmake
