@@ -85,7 +85,7 @@ let
     automake
     python3
     ghc
-    nodePackages.nodejs
+    nodejs
     git-lfs
     github-desktop
     jetbrains.phpstorm
