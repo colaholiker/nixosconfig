@@ -38,7 +38,9 @@ in
 
   # Rebuilds nicht parallel und mit niedriger Priorität, damit der Desktop bedienbar bleibt
   nix.settings.max-jobs = 1;
-  nix.daemonCPUSchedPolicy = "idle";
-  nix.daemonIOSchedClass = "idle";
+  # Nicht "idle": das würde auch Download/Entpacken der Substitutes ausbremsen
+  nix.daemonCPUSchedPolicy = "batch";
+  nix.daemonIOSchedClass = "best-effort";
+  nix.daemonIOSchedPriority = 7;
 
 }

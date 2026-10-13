@@ -19,8 +19,13 @@ in
     permittedInsecurePackages = usedPermittedInsecurePackages;
   };
   nix.settings = {
-    auto-optimise-store = true;
+    # Dedup periodisch über nix.optimise statt bei jedem Download
+    auto-optimise-store = false;
     experimental-features = [ "nix-command" "flakes" ];
+    # Schnellere Downloads aus den Binary-Caches
+    max-substitution-jobs = 32;
+    http-connections = 50;
+    download-buffer-size = 268435456; # 256 MiB
     substituters = [
       "https://cache.nixos.org/"
       "https://nix-community.cachix.org"
@@ -44,6 +49,7 @@ in
     persistent = true;
     allowReboot = false;
   };
+  nix.optimise.automatic = true;
   nix.gc = {
     automatic = true;
     dates = "daily";
