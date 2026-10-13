@@ -17,6 +17,9 @@
     firewall.enable = true;
     # WireGuard über NetworkManager: strenger rpfilter verwirft sonst Pakete über den Tunnel
     firewall.checkReversePath = "loose";
+    hosts = {
+      "92.205.197.255" = [ "vw-ra.de" "www.vw-ra.de" ];
+    };
   };
 
   # WireGuard-Verbindungen verwaltet NetworkManager (nmcli connection import type wireguard file wg0.conf)
