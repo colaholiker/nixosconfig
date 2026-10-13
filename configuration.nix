@@ -38,16 +38,21 @@ in
     ];
     trusted-users = [ "root" ];
   };
-  # Baut täglich den Stand von GitHub (main) für den eigenen Hostnamen, ohne Neustart.
+  # Baut täglich den Stand von GitHub (main) für den eigenen Hostnamen;
+  # Neustart nur, wenn sich Kernel/initrd geändert haben.
   # Neue nixpkgs-Versionen kommen über ein committetes flake.lock (nix flake update).
   system.autoUpgrade = {
     enable = true;
     flake = "github:colaholiker/nixosconfig";
     flags = [ "--refresh" "-L" ];
-    dates = "12:30";
+    dates = "21:00";
     randomizedDelaySec = "30min";
     persistent = true;
-    allowReboot = false;
+    allowReboot = true;
+    rebootWindow = {
+      lower = "21:00";
+      upper = "04:00";
+    };
   };
   nix.optimise.automatic = true;
   nix.gc = {
