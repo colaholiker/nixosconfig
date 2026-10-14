@@ -30,23 +30,27 @@
   environment.systemPackages = [ pkgs.wireguard-tools ];
 
   # Schlüssel liegen nicht im Repo, sondern lokal auf dem Host (root:root, 0600):
-  #   WG_BIGTOWER_PRIVATE_KEY=...
-  #   WG_BIGTOWER_PRESHARED_KEY=...
+  #   WG_COLABOX_PRIVATE_KEY=...
+  #   WG_COLABOX_PRESHARED_KEY=...
+  #   (analog wg-bigtower.env mit WG_BIGTOWER_*)
   networking.networkmanager.ensureProfiles = {
-    environmentFiles = [ "/etc/nixos/secrets/wg-bigtower.env" ];
-    profiles.wg-bigtower = {
+    environmentFiles = [
+      "/etc/nixos/secrets/wg-colabox.env"
+      "/etc/nixos/secrets/wg-bigtower.env"
+    ];
+    profiles.wg-colabox = {
       connection = {
-        id = "wg-bigtower";
+        id = "wg-colabox";
         type = "wireguard";
-        interface-name = "wg-bigtower";
+        interface-name = "wg-colabox";
         autoconnect = true;
       };
       wireguard = {
-        private-key = "$WG_BIGTOWER_PRIVATE_KEY";
+        private-key = "$WG_COLABOX_PRIVATE_KEY";
       };
       "wireguard-peer.0Fiujx1NYW12dPFxjVw4b0WhYf2BA7kRM9zWXr8CD08=" = {
         endpoint = "po9ibyy3cx1nluwp.myfritz.net:50548";
-        preshared-key = "$WG_BIGTOWER_PRESHARED_KEY";
+        preshared-key = "$WG_COLABOX_PRESHARED_KEY";
         preshared-key-flags = 0;
         # Split-Tunnel: nur das Heimnetz über den Tunnel, Internet direkt
         allowed-ips = "172.16.0.0/16;fdca:ef84:2e09::/64;";
@@ -62,6 +66,38 @@
         method = "manual";
         address1 = "fdca:ef84:2e09::3/64";
         dns = "fdca:ef84:2e09::52e6:36ff:fe72:bdb9;";
+        dns-search = "fritz.box;";
+        addr-gen-mode = "stable-privacy";
+      };
+    };
+    profiles.wg-bigtower = {
+      connection = {
+        id = "wg-bigtower";
+        type = "wireguard";
+        interface-name = "wg-bigtower";
+        autoconnect = true;
+      };
+      wireguard = {
+        private-key = "$WG_BIGTOWER_PRIVATE_KEY";
+      };
+      "wireguard-peer.q6/DbnxmuHjLM2HJVgHBYXSzU5BDMaFDVhrFqB4ud1E=" = {
+        endpoint = "xojuthxm4igulckg.myfritz.net:58371";
+        preshared-key = "$WG_BIGTOWER_PRESHARED_KEY";
+        preshared-key-flags = 0;
+        # Split-Tunnel: nur das Heimnetz über den Tunnel, Internet direkt
+        allowed-ips = "172.17.0.0/16;fd7c:fe61:37e2::/64;";
+        persistent-keepalive = 25;
+      };
+      ipv4 = {
+        method = "manual";
+        address1 = "172.17.221.4/16";
+        dns = "172.17.0.1;";
+        dns-search = "fritz.box;";
+      };
+      ipv6 = {
+        method = "manual";
+        address1 = "fd7c:fe61:37e2::4/64";
+        dns = "fd7c:fe61:37e2::d624:ddff:fe2b:973b;";
         dns-search = "fritz.box;";
         addr-gen-mode = "stable-privacy";
       };
