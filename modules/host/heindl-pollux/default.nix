@@ -9,6 +9,8 @@
   networking = {
     hostName = "heindl-pollux";
     networkmanager.enable = true;
+    # Split-DNS: Anfragen für fritz.box gehen über den Tunnel, alles andere über das lokale Netz
+    networkmanager.dns = "systemd-resolved";
     usePredictableInterfaceNames = true;
     #proxy = {
       #default = "http://user:password@proxy:port/";
@@ -21,6 +23,8 @@
       "92.205.197.255" = [ "vw-ra.de" "www.vw-ra.de" ];
     };
   };
+
+  services.resolved.enable = true;
 
   # WireGuard-Verbindungen verwaltet NetworkManager (nmcli connection import type wireguard file wg0.conf)
   environment.systemPackages = [ pkgs.wireguard-tools ];
@@ -44,7 +48,8 @@
         endpoint = "po9ibyy3cx1nluwp.myfritz.net:50548";
         preshared-key = "$WG_BIGTOWER_PRESHARED_KEY";
         preshared-key-flags = 0;
-        allowed-ips = "172.16.0.0/16;0.0.0.0/0;fdca:ef84:2e09::/64;::/0;";
+        # Split-Tunnel: nur das Heimnetz über den Tunnel, Internet direkt
+        allowed-ips = "172.16.0.0/16;fdca:ef84:2e09::/64;";
         persistent-keepalive = 25;
       };
       ipv4 = {
