@@ -7,3 +7,7 @@ result-*
 
 # direnv
 .direnv/
+
+# Secrets (liegen nur lokal auf dem Host)
+secrets/
+*.env
