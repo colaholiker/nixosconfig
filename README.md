@@ -50,7 +50,8 @@ nix fmt
 | Audio | Intel HDA mit Realtek ALC887 + HDMI/DP-Audio |
 | Sonstiges | 2× seriell, 1× parallel, Intel ME |
 | Monitore | 2× LG BK550Y (1920×1080@60) an DP-1 (DP→HDMI-Kabel) und HDMI-A-2 – beide über KVM-Switch |
-| KVM-Hinweis | Der KVM-Switch reicht Hotplug/EDID nicht zuverlässig durch, daher sind beide Anschlüsse fest eingeschaltet und bekommen die EDID des LG (`monitors.nix`) |
+| KVM-Hinweis | Der KVM-Switch reicht Hotplug/EDID nicht zuverlässig durch, daher sind beide Anschlüsse fest eingeschaltet und bekommen die EDID des LG und fest 1920×1080@60 (`monitors.nix`) |
+| Login-Screen | SDDM läuft unter KWin und bekommt die Monitor-Konfiguration der Plasma-Sitzung (`kwinoutputconfig.json` im Hardware-Ordner, Kopie von `~/.config/kwinoutputconfig.json`), sonst stimmt die Auflösung nach dem KVM-Umschalten manchmal nicht |
 
 ## Feature-Flags
 
