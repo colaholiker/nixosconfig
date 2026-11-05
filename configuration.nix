@@ -73,6 +73,8 @@ in
   programs.vim = {
     enable = true;
     defaultEditor = true;
+    # vim-full enthält die GUI (gvim, GTK3), Clipboard, Python/Lua usw.
+    package = pkgs.vim-full;
   };
   services.fstrim.enable = true;
   services.fwupd.enable = true;
