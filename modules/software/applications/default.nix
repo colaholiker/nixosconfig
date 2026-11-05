@@ -136,6 +136,9 @@ in
     (lib.mkIf cfg.dev {
       environment.systemPackages = devpkgs;
       programs.vscode.enable = true;
+      # Erlaubt heruntergeladene generische Linux-Binaries (JetBrains ACP-Agents
+      # wie Junie und das von PhpStorm geladene Node für claude-acp/npx)
+      programs.nix-ld.enable = true;
     })
 
     (lib.mkIf cfg.communication {
