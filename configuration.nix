@@ -14,6 +14,7 @@ let
 in
 {
   hardware.enableAllFirmware = true;
+  environment.etc.hosts.mode = "0644";
   nixpkgs.config = {
     allowUnfree = true;
     permittedInsecurePackages = usedPermittedInsecurePackages;
