@@ -22,6 +22,7 @@ let
     netdiscover
     #netsniff-ng BROKEN
     nmap
+    putty
     whois
     #nomachine-client
     zenmap
