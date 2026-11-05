@@ -5,6 +5,11 @@
   ...
 }:
 let
+  # GTK3-Programme (putty, pterm, pageant, puttygen) brauchen die GSettings-Schemas,
+  # sonst Absturz mit "No GSettings schemas are installed on the system"
+  puttyWrapped = pkgs.putty.overrideAttrs (old: {
+    nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ pkgs.wrapGAppsHook3 ];
+  });
   gnspkgs = with pkgs; [
     gns3-gui
     #ciscoPacketTracer8
@@ -22,7 +27,7 @@ let
     netdiscover
     #netsniff-ng BROKEN
     nmap
-    putty
+    puttyWrapped
     whois
     #nomachine-client
     zenmap
