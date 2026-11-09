@@ -22,6 +22,7 @@ let
     kitty
     #kicad
     meld
+    prismlauncher
     gpu-viewer
     gparted
     gimp
